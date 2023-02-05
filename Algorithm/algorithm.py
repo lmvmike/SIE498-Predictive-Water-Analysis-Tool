@@ -69,7 +69,7 @@ print('Water ordered: ', waterOrdered)
 
 cfsNeeded = (((croptypeWeight + cropphaseWeight + soilTypeWeight) * acres)
 + (averageTemp*averageTempWeight) 
-+ (forecastHumidity * humidityWeight)
++ (forecastHumidity * humidityWeight)›
 + (forecastWindSpeed * windSpeedWeight))
 + waterOrdered
 
