@@ -1,76 +1,97 @@
 cropType = ["lettuce", "broccoli", "cantaloupe", "cabbage", "dates"]
 cropPhase = ["seed", "sprout", "adolescence", "adult"]
-soiltype = ["sandy", "peaty", "silty", "chalky", "clay", "loamy"]
-averageTempWeight = 1
-humidityWeight = 2/3
-windSpeedWeight = 1/3
+soilType = ["sandy", "peaty", "silty", "chalky", "clay", "loamy"]
 
 
 #croptype
 cropType = input("Enter the crop type: ")
-if (cropType[0]):
-    croptypeWeight = 1
-elif (cropType[1]):
+if (cropType == "lettuce"):
+        croptypeWeight = 1
+elif (cropType == "broccoli"):
     croptypeWeight = 4/5
-elif (cropType[2]):
-    croptypeWeight = 3/5
-elif (cropType[3]):
-    croptypeWeight = 2/5
-elif (cropType[4]):
-    croptypeWeight = 1/5   
+elif (cropType == "cantoloupe"):
+        croptypeWeight = 3/5
+elif (cropType == "cabbage"):
+        croptypeWeight = 2/5
+elif (cropType == "dates"):
+        croptypeWeight = 1/5
+else:
+    print('Invalid crop type. Try again')
+    
 
-print ('Crop Weight = ', croptypeWeight)
+#print ('Crop Weight = ', croptypeWeight)
 
 cropPhase = input("Enter the crop phase: ")
-if (cropPhase[0]):
+if (cropPhase == 'seed'):
     cropphaseWeight = 1
-elif (cropPhase[1]):
+elif (cropPhase == "sprout"):
     cropphaseWeight = 3/4
-elif (cropPhase[2]):
+elif (cropPhase == "adolescence"):
     cropphaseWeight = 2/4
-elif (cropPhase[3]):
+elif (cropPhase == "adult"):
     cropphaseWeight = 1/4
-    print ('Phase Weight = ', cropphaseWeight)
+
+#print ('Phase Weight = ', cropphaseWeight)
 
 soilType = input("Enter the soil type: ")
-if (soilType[0]):
+if (soilType == "sandy"):
     soilTypeWeight = 1
-elif (soilType[1]):
+elif (soilType == "peaty"):
     soilTypeWeight = 5/6
-elif (soilType[2]):
+elif (soilType == "silty"):
     soilTypeWeight = 4/6
-elif (soilType[3]):
+elif (soilType == "chalky"):
     soilTypeWeight = 3/6
-elif (soilType[4]):
+elif (soilType == "clay"):
     soilTypeWeight = 2/6 
-elif (soilType[5]):
+elif (soilType == "loamy"):
     soilTypeWeight = 1/6
+#     # print('Soil Weight = ',soilTypeWeight)
 
 acres = float(input("Enter the acres to be watered: "))
-print(' Acres watered: ', acres)
+# print(' Acres watered: ', acres)
 
 forecastTempHigh = float(input("Enter the high temp for the day: "))
-print('forecastTempHigh: ', forecastTempHigh)
+# print('forecastTempHigh: ', forecastTempHigh)
 
 forecastTempLow = float(input("Enter the low temp for the day: "))
-print('forecastTempLow: ', forecastTempLow)
+# print('forecastTempLow: ', forecastTempLow)
 
 averageTemp = (forecastTempHigh + forecastTempLow) / 2
-print('Average Temp: ', averageTemp)
+if (averageTemp > 90):
+    averageTempWeight = 1
+elif (averageTemp > 70):
+    averageTempWeight = 3/4
+elif (averageTemp > 0):
+    averageTempWeight = 1/2
+# print('Average Temp: ', averageTemp)
 
 forecastWindSpeed = float(input("Enter the average wind speed for the day: "))
-print('Average Wind Speed: ', forecastWindSpeed)
+if (forecastWindSpeed > 20):
+    windSpeedWeight = 1
+elif (forecastWindSpeed > 10):
+    windSpeedWeight = 3/4
+elif (forecastWindSpeed > 0
+):
+    windSpeedWeight = 1/2
+# print('Average Wind Speed: ', forecastWindSpeed)
 
 forecastHumidity = float(input("Enter the average humidity for the day: "))
-print('Average Humidity: ', forecastHumidity)
+if (forecastHumidity > 50):
+    humidityWeight = 1/4
+elif(forecastHumidity > 25):
+    humidityWeight = 1/2
+elif (forecastHumidity > 10):
+    humidityWeight = 3/4
+elif (forecastHumidity > 0):
+    humidityWeight = 1
+# print('Average Humidity: ', forecastHumidity)
+
 
 waterOrdered = float(input("Enter the water needed: "))
-print('Water ordered: ', waterOrdered)
+# print('Water ordered: ', waterOrdered)
 
-cfsNeeded = (((croptypeWeight + cropphaseWeight + soilTypeWeight) * acres)
-+ (averageTemp*averageTempWeight) 
-+ (forecastHumidity * humidityWeight)›
-+ (forecastWindSpeed * windSpeedWeight))
-+ waterOrdered
+cfsNeeded = ((croptypeWeight + cropphaseWeight + soilTypeWeight
++ averageTempWeight + humidityWeight + windSpeedWeight)) + waterOrdered
 
-print('Order this much CFS: ', cfsNeeded)
+print('You should order this much water: ', cfsNeeded, 'CFS')
